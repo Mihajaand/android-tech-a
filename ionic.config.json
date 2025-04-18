@@ -1,0 +1,7 @@
+{
+  "name": "etudiant-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
