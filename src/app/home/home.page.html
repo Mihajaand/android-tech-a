@@ -1,20 +1,58 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Gestion Étudiants</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <p>COUCOU TEST NEW PROJETCT</p>
+  <ion-item>
+    <ion-input placeholder="Nom" [(ngModel)]="nom"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" placeholder="Moyenne" [(ngModel)]="moyenne"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="ajouter()">Ajouter</ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Liste des étudiants</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="ion-text-center" color="light">
+          <ion-col size="3"><strong>Nom</strong></ion-col>
+          <ion-col size="3"><strong>Moyenne</strong></ion-col>
+          <ion-col size="3"><strong>Observation</strong></ion-col>
+          <ion-col size="3"><strong>Actions</strong></ion-col>
+        </ion-row>
+  
+        <ion-row *ngFor="let e of etudiants" class="ion-text-center">
+          <ion-col size="3">{{ e.nom }}</ion-col>
+          <ion-col size="3">{{ e.moyenne }}</ion-col>
+          <ion-col size="3">{{ getObservation(e.moyenne) }}</ion-col>
+          <ion-col size="3">
+            <ion-button fill="clear" color="medium" (click)="modifier(e)">✏️</ion-button>
+            <ion-button fill="clear" color="danger" (click)="supprimer(e)">🗑️</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Statistiques</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Moyenne de classe : {{ moyenneClasse() }} <br />
+      Max : {{ maxMoyenne() }} <br />
+      Min : {{ minMoyenne() }}
+    </ion-card-content>
+  </ion-card>
+  <canvas #statChartCanvas></canvas>
+
+
 </ion-content>
